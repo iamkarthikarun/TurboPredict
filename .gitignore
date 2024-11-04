@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Credentials and Secrets
+*CREDS*.txt
+*.env
+.env
+.env.*
+
+# Large files and datasets
+*.gz
+*.h5
+*.pth
+data.json
+*.torrent
+*.mkv
+
+# Temporary files
+last_timestamp.txt
+sample_data.json
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Project specific
+EngineClass*Data.json
+EngineClass*RUL.json
+FD00*-Samples.json
