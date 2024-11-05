@@ -1,20 +1,15 @@
 import time
 import os
-from dotenv import load_dotenv
-
 import json
-from kafka import KafkaConsumer, KafkaProducer, TopicPartition
+from kafka import KafkaConsumer, TopicPartition
 import boto3
 from boto3 import client
-from botocore.config import Config
-from datetime import datetime
-
+from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-
 def save_timestamp_to_storage(timestamp):
   """
   Saves the timestamp (Unix epoch) to a local text file as an integer.
@@ -133,7 +128,6 @@ def write_to_AWS_TS():
         #rec_out = consumer.offsets_for_times({partition:current_times})
         #print(rec_in, rec_out)
         consumer.seek(partition, rec_in[partition].offset+1)
-        #print("Hi")
         """offsets = consumer.offsets_for_times({partition: last_timestamp})
         if offsets:
             offset_val = list(offsets.values())[0]
@@ -143,9 +137,6 @@ def write_to_AWS_TS():
         else:
             print(f"No offsets found for timestamp: {last_timestamp}")"""
     records = []
-    """for msg in consumer:
-       print(msg)"""
-
     try:
         for msg in consumer:
             try:
@@ -154,12 +145,9 @@ def write_to_AWS_TS():
                     message_dict = msg.value
                     print(message_dict['timestamp'])
                     print(type(message_dict['timestamp']))
-                    #print(message_dict)
                 else:
                     # Decode JSON if not already a dictionary
                     message_dict = json.loads(msg.value.decode("utf-8"))
-                #print(float(last_timestamp))
-                #print(float(message_dict['timestamp']))
                 if(float(last_timestamp) >= float(message_dict['timestamp'])):
                    break
                 print(f"Received message: {message_dict}")
