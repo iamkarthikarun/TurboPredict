@@ -54,3 +54,7 @@ Thumbs.db
 EngineClass*Data.json
 EngineClass*RUL.json
 FD00*-Samples.json
+.env
+*CREDS*.txt
+*.pem
+*.key
